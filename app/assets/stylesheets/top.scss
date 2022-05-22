@@ -1,0 +1,126 @@
+.main_back {
+  background-image: image-url('main_back.jpg');
+  background-size: auto 1000px;
+  height: 800px;
+  background-repeat: no-repeat;
+}
+
+.box_search {
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: black;
+  width: 400px;
+  background-color: white;
+}
+
+.home_msg {
+  display: inline-block;
+  font-size: 30px;
+  // border: 1px solid;
+  padding-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.home_moji {
+  display: inline-block;
+  font-size: 15px;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: black;
+}
+
+.home_search {
+  display: inline-block;
+  font-size: 30px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  color: gray;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+}
+
+.home_enter_text {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  margin: 30px 20px 40px 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+  font-size: 20px;
+  background-color: blue;
+  color: white;
+  width: calc(100% - 40px);
+}
+
+.title_osusume {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  margin-left: 100px;
+  flex-direction: column;
+  // border: 1px solid;
+  // border-color: black;
+  width: 400px;
+}
+
+.box_osusume {
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.image_block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: calc(100vw - 200px);
+}
+
+.moji_pos {
+  margin-top: 310px;
+}
+
+.back_image_com {
+  width: 240px;
+  height: 360px;
+  border-radius: 8px;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  top: 400px;
+}
+
+.back_image_tokyo {
+  background-image: image-url('img_tokyo.jpeg');
+}
+
+.back_image_osaka {
+  background-image: image-url('img_osaka.jpeg');
+}
+
+.back_image_kyoto {
+  background-image: image-url('img_kyoto.jpeg');
+}
+
+.back_image_sapporo {
+  background-image: image-url('img_sapporo.jpeg');
+}

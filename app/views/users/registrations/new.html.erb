@@ -1,0 +1,48 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<% if flash[:success] %>
+  <div><%= flash[:success] %></div>
+<% else %>
+  <div><%= flash[:failure] %></div>
+<% end %>
+
+<%= form_with(model: @user, url: user_registration_path(@user), local: true) do |f| %>
+  
+  <div><%= render 'users/shared/error_msg', obj: @user %></div>
+
+  <div class="user_sign_box">
+    <div class="user_make_title">新しいアカウントを作成</div>
+
+      <div class="user_box_field">
+        <span class="box_kotei_moji_00">任意</span>
+        <span><%= f.text_field :name, autofocus: true, autocomplete: "name", :class => 'input_box', placeholder: "名前" %></span>
+      </div>
+      
+      <div class="user_box_field">
+        <span class="box_kotei_moji">必須</span>
+        <span><%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'input_box', placeholder: "メールアドレス" %></span>
+      </div>
+      
+      <div class="user_box_field">
+        <span class="box_kotei_moji">必須</span>
+        <span><%= f.password_field :password, autocomplete: "new-password", :class => 'input_box', placeholder: "パスワード" %></span>
+      </div>
+      
+      <div class="user_box_field">
+        <span class="box_kotei_moji">必須</span>
+        <span><%= f.password_field :password_confirmation, autocomplete: "new-password", :class => 'input_box', placeholder: "パスワード確認" %></span>
+      </div>
+      
+      <div class="user_make_title">
+        <%= button_to "新しいアカウントを登録する", {controller: "users/registrations" , action: 'create'} , {method: :POST, class: 'user_make_btn'} %>
+      </div>
+      
+      <div class="user_in_title">
+        <%= link_to "すでにアカウントをお持ちの方はログイン", :login_form, class: 'user_in_btn' %>
+      </div>
+  </div>
+<% end %>

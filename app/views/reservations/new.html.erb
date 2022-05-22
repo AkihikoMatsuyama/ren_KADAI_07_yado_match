@@ -1,0 +1,59 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<%= form_with model: @reservation, url: { action: 'create' }, local: true do |f| %>
+  
+  <div><%= render 'users/shared/error_msg', obj: @post %></div>
+
+  <div class="reserve_all_box">
+    <%= f.hidden_field :rm_id, :value => @post[:rm_id] %>
+    <%= f.hidden_field :user_id, :value => @user[:id] %>
+    <div>
+      <h2 class="reserve_box_01">予約内容確認</h2>
+      <div class="reserve_box_02">
+        <span><%= number_to_currency(@post[:money], unit: "¥", format: "%u %n", strip_insignificant_zeros: true) %> / 日</span>
+        <%= f.hidden_field :money, :value => @post[:money] %>
+      </div>
+      <div class="reserve_box_03">
+        <span>開始日</span>
+        <% if !@post[:start_day].nil?%>
+          <span class="reserve_box_03_in"><%= @post[:start_day].to_date %></span>
+          <%= f.hidden_field :start_day, :value => @post[:start_day] %>
+        <% else %>
+          <span class="reserve_box_03_in"></span>
+        <% end %>
+      </div>
+      <div class="reserve_box_03">
+        <span>終了日</span>
+        <% if !@post[:end_day].nil?%>
+          <span class="reserve_box_03_in"><%= @post[:end_day].to_date %></span>
+          <%= f.hidden_field :end_day, :value => @post[:end_day] %>
+        <% else %>
+          <span class="reserve_box_03_in"></span>
+        <% end %>
+      </div>
+      <div class="reserve_box_04">
+        <span>□使用日数：<%= @stay_day %>日</span>
+      </div>
+      <div class="reserve_box_05">
+        <span>□人数：<%= @post[:person] %>人</span>
+        <%= f.hidden_field :person, :value => @post[:person] %>
+      </div>
+      <div class="reserve_box_03">
+        <span>合計金額</span>
+        <span class="reserve_box_03_in"><%= @total_money %></span>
+        <%= f.hidden_field :price, :value => @total_money %>
+        <span class="reserve_box_03_in2">上記内容でよろしければ「予約を確定」を押してください</span>
+      </div>
+      <div class="reserve_box_06">
+        <% if !@post.errors.any? %>
+          <span><%= f.submit "予約を確定" ,class: "reserve_make_btn" %></span>
+        <% end %>
+        <span><%= link_to "ルーム詳細に戻る", :back ,class: "reserve_make_btn2" %></span>
+      </div>
+    </div>
+  </div>
+<% end %>

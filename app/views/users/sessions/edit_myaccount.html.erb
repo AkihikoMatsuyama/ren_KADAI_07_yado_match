@@ -1,0 +1,45 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+  
+<%= form_for(resource, as: resource_name, url: myaccount_path(resource_name)) do |f| %>
+
+  <div><%= render 'users/shared/error_msg', obj: @user %></div>
+
+  <div class="user_sign_box">
+    <div class="user_edit_ac_title">アカウント編集</div>
+
+    <div class="user_edit_ac_field">
+      <span>メールアドレス</span>
+      <span><%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'input_box' %></span>
+    </div>
+    
+    <div class="user_edit_ac_field">
+      <span>変更後パスワード（変更する場合のみ入力）</span>
+      <span><%= f.password_field :password, autofocus: true, autocomplete: "new-password", :class => 'input_box' %></span>
+    </div>
+
+    <div class="user_edit_ac_field">
+      <span>パスワード確認用（変更する場合のみ入力）</span>
+      <span><%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", :class => 'input_box' %></span>
+    </div>
+
+    <div class="user_edit_ac_field">
+      <span>現在のパスワード</span>
+      <span><%= f.password_field :password_now, autofocus: true, autocomplete: "new-password", :class => 'input_box', placeholder: "現在のパスワード" %></span>
+    </div>
+    
+    <div class="user_edit_ac_field">
+      <div class="user_ac_btn">
+        <%= button_to "更新", {controller: "users/sessions" , action: 'update_myaccount'} , {method: :GET, class: 'ac_btn1'} %>
+      </div>
+
+      <div class="user_ac_btn">
+        <%= link_to "戻る", :back, class: 'ac_btn2' %>
+      </div>
+    </div>
+  </div>
+<% end %>

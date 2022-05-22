@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ @import 'common';
+ @import 'tops';
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+ @import 'user_input_box';
+ @import 'user_menu_box';
+ @import 'user_edit_box';
+ @import 'room';
+ @import 'reserve';
+ @import 'search';
+ @import 'bootstrap-datetimepicker';

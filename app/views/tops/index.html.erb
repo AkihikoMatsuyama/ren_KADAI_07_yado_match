@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<% if flash[:success] %>
+  <div><%= flash[:success] %></div>
+<% end %>
+
+<%= render 'users/shared/top_common' %>

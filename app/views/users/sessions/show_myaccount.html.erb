@@ -1,0 +1,35 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<%= form_with model: @user, url: myaccount_path(@user) do |f| %>
+  <div class="mypage_box_all">
+    <div class="box_left">
+      <%= render 'users/shared/mymenu_common' %>
+    </div>
+    
+    <div class="box_right">
+      <div class="boxR_all_bkcolor">
+        <div class="boxR_01">アカウント</div>
+
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01">メールアドレス</span>
+          </div>
+          <div class="profile_name_box_readonly"><%= @user.email %></div>
+        </div>
+        
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01">パスワード</span>
+          </div>
+          <div class="profile_name_box_readonly">**********</div>
+        </div>
+
+      </div>
+    
+    </div>
+  </div>
+<% end %>

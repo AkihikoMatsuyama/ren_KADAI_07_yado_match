@@ -1,0 +1,25 @@
+<div class="main_back">
+
+  <%= form_with(model: @post, url: rooms_search_path , method: :GET, local: true) do |f| %>
+    <div class="box_search">
+      <span class="home_msg">Poteapn Shareでまだ体験したことのない旅をしよう</span>
+
+      <span class="home_moji">エリア</span>
+      <span><%= f.search_field :search_area, class: 'home_search' %></span>
+
+      <span class="home_moji">キーワード</span>
+      <span><%= f.search_field :search_word, class: 'home_search' %></span>
+      
+      <span><%= f.submit "探す", class: 'home_enter_text' %></span>
+    </div>
+  <% end %>
+</div>
+
+<div class="title_osusume">おすすめのエリア</div>
+
+<div class="image_block">
+  <span class="back_image_com back_image_tokyo"><p class="moji_pos">東京</p></span>
+  <span class="back_image_com back_image_osaka"><p class="moji_pos">大阪</p></span>
+  <span class="back_image_com back_image_kyoto"><p class="moji_pos">京都</p></span>
+  <span class="back_image_com back_image_sapporo"><p class="moji_pos">札幌</p></span>
+</div>
