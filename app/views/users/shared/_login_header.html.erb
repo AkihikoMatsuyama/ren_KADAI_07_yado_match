@@ -1,0 +1,25 @@
+<header>
+  <div><%= link_to "Pote Share", mytop_path(@user), class: 'top_name' %></div>
+  
+  <div class="user_top_button">
+    <div class="user_name_pos"><%= @user.name %></div>
+    <div class="accordion-box">
+      <label for="tab1">
+        <% if @user.image.nil? %>
+          <%= image_tag "/uploads/room/image/profile_default_icon.png", class: 'icon_size icon_mark' %>
+        <% else %>
+          <%= image_tag @user.image.to_s, class: 'icon_size_usr icon_mark' %>
+        <% end %>
+      </label>
+    </div>
+  </div>
+
+  <input type="checkbox" id="tab1" />
+  <ul class="List_pos">
+    <li><%= link_to "ルーム登録", new_room_path(:user_id => @user.id), class: 'user_in_btn' %></li>
+    <li><%= link_to "予約済ルーム一覧", reservations_path(@user), class: 'user_in_btn' %></li>
+    <li><%= link_to "登録済ルーム一覧", rooms_path(@user), class: 'user_in_btn' %></li>
+    <li><%= link_to "設定", myprofile_path(@user), class: 'user_in_btn' %></li>
+    <li><%= link_to "ログアウト", logout_path(@user), class: 'user_in_btn' %></li>
+  </ul>
+</header>

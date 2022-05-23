@@ -1,0 +1,49 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+  activerecord:
+    models:
+      user:
+      room:
+      reservation:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認用
+        password_now: 現在のパスワード
+      room:
+        name: ルーム名
+        profile: ルーム紹介
+        money: 料金
+        address: 住所
+        image: ルーム画像
+      reservation:
+        start_day: 開始日
+        end_day: 終了日
+        person: 人数
+    errors:
+      models:
+        room:
+          attributes:
+            name:
+              blank: を入力してください
+            profile:
+              blank: を入力してください
+            money:
+              blank: を入力してください
+            address:
+              blank: を入力してください
+            image:
+              blank: を登録してください
+        reservation:
+          attributes:
+            start_day:
+              blank: を選択してください
+            end_day:
+              blank: を選択してください
+
+
+

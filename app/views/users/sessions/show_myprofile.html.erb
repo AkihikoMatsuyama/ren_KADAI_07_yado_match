@@ -1,0 +1,69 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<% if flash[:success] %>
+  <div><%= flash[:success] %></div>
+<% else %>
+  <div><%= flash[:failure] %></div>
+<% end %>
+
+<%= form_with model: @user, url: myprofile_path(@user) do |f| %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <div class="mypage_box_all">
+    <div class="box_left">
+      <%= render 'users/shared/mymenu_common' %>
+    </div>
+    
+    <div class="box_right">
+      <div class="boxR_all_bkcolor">
+        <div class="boxR_01">プロフィール</div>
+        
+        <div class="boxR_02">
+          <% if @user.image.nil? %>
+            <%= image_tag 'assets/images/profile_default_icon.png', class: 'icon_size_usr' %>
+          <% else %>
+            <%= image_tag @user.image.to_s, class: 'icon_size_usr' %>
+          <% end %>
+        </div>
+
+        <div class="boxR_03">
+           <div class="boxR_03_L">
+             <span class="boxR_03_L_01">アイコン画像</span>
+            <span class="box_kotei_moji_00">任意</span>
+          </div>
+          <div  class="boxR_03_R">          
+            <%= f.file_field :image, value: @user.image.to_s, class: 'room_image_box' %>
+          </div>
+        </div>
+
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01">名前</span>
+            <span class="box_kotei_moji_00">任意</span>
+          </div>          
+          <div>
+            <%= f.text_field :name, value: @user.name, class: 'profile_name_box'%>
+          </div>
+        </div>
+        
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01 ">自己紹介</span>
+            <span class="box_kotei_moji_00">任意</span>
+          </div>
+          <div>
+            <%= f.text_area :profile, value: @user.profile, class: 'profile_intro_box', placeholder: "自己紹介を入力" %>
+          </div>
+        </div>
+
+        <div class="boxR_03">
+          <%= button_to "更新", up_myprofile_path(@user), class: 'btn1' %>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<h1 class="search_top_title">検索結果 ： <%= @rooms.count %>件<h1>
+
+<div class="search_all_box">
+  <% if @rooms.count > 0 %>
+    <% @rooms.each do |rm| %>
+      <div class="search_each_box">
+        <%= link_to room_path(rm.id), class: 'search_each_box_font' do %>
+          <div><%= image_tag(rm.image.thumb.to_s) %></div>
+          <div class="search_each_box_pos01"><%= rm.name %></div>
+          <div class="search_each_box_pos01"><%= rm.address %></div>
+          <div class="search_each_box_pos02"><%= number_to_currency(rm.money, unit: "¥", format: "%u %n", strip_insignificant_zeros: true) %></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <span>お探しの部屋は見つかりませんでした</span>
+  <% end %>
+</div>

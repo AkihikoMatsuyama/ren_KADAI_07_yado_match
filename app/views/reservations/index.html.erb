@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<div class="room_all_box">
+  <div class="room_box_top">予約済みルーム一覧</div>
+
+  <table class="room_box_table">
+    <tr>
+      <th class="room_box_title">ルーム画像</th>
+      <th class="room_box_title">ルーム名</th>
+      <th class="room_box_title">ルーム紹介</th>
+      <th class="room_box_title">合計料金</th>
+      <th class="room_box_title">開始日</th>
+      <th class="room_box_title">終了日</th>
+      <th class="room_box_title">予約確定日時</th>
+    </tr>
+    
+    <% if @reservations.count > 0 %>
+      <% @reservations.each do |res| %>
+        <tr>
+          <th class="room_box_table_body"><%= link_to image_tag(Room.find(res.rm_id).image.thumb.to_s), room_path(res.rm_id) %></th>
+          <th class="room_box_table_body"><%= link_to Room.find(res.rm_id).name, room_path(res.rm_id) %></th>
+          <th class="room_box_table_body"><%= Room.find(res.rm_id).profile %></th>
+          <th class="room_box_table_body"><%= res.price %></th>
+          <th class="room_box_table_body"><%= res.start_day.to_date %></th>
+          <th class="room_box_table_body"><%= res.end_day.to_date %></th>
+          <th class="room_box_table_body"><%= l res.created_at %></th>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <th colspan="7">予約済みの部屋はありません。</th>
+      </tr>
+    <% end %>
+  </table>
+</div>

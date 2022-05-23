@@ -1,0 +1,62 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<%= form_with(model: @reservation, url: new_reservation_path , method: :GET, local: true) do |f| %>
+  <%= f.hidden_field :rm_id, :value => @room.id %>
+  <div class="room_show_box">
+    <div class="room_show_box_L">
+      <div><%= image_tag(@room.image.to_s) %></div>
+      <div class="room_show_box_L02">
+        <div class="room_show_box_L02_L">
+          <% if user_signed_in? %>
+            <%= link_to mytop_path(@user), class: 'search_box_link_top' do %>
+              <div>検索画面</div>
+              <div>TOP</div>
+            <% end %>
+          <% else %>
+            <%= link_to tops_path, class: 'search_box_link_top' do %>
+              <div>検索画面</div>
+              <div>TOP</div>
+            <% end %>
+          <% end%>
+        </div>
+
+        <div class="room_show_box_L02_R">
+          <span class="room_show_box_L02_R_font1"><%= @room.name %></span>
+          <span class="room_show_box_L02_R_font2"><%= @room.address %></span>
+        </div>
+      </div>
+      <div class="room_show_box_L03"><%= @room.profile %></div>
+    </div>
+    <div class="room_show_box_R">
+      <div class="room_show_box_R_in">
+        <div class="room_show_box_R01">
+          <span><%= number_to_currency(@room.money, unit: "¥", format: "%u %n", strip_insignificant_zeros: true) %> / 日</span>
+          <%= f.hidden_field :money, :value => @room.money%>
+        </div>
+        <div  class="room_show_box_R02">
+          <span><%= f.label :start_day ,"開始日" %></span>
+          <span><%= f.date_field :start_day, class: "datepicker date_font" %></span>
+        </div>
+        <div class="room_show_box_R02">
+          <span><%= f.label :end_day ,"終了日" %></span>
+          <span><%= f.date_field :end_day, class: "datepicker date_font" %></span>
+        </div>
+        <div class="room_show_box_R02">
+          <span><%= f.label :person ,"人数" %></span>
+          <span><%= f.number_field :person, class: "datepicker date_font" %></span>
+        </div>
+        <div class="room_show_box_R03">
+          <% if user_signed_in? %>
+            <%= f.submit "予約する", class: 'user_make_btn' %>
+          <% else %>
+            <%= link_to "ログイン", login_form_path, class: 'user_make_btn' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,80 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<%= form_with model: @room, url: { action: 'create' }, local: true do |f| %>
+
+  <div><%= render 'users/shared/error_msg', obj: @room %></div>
+
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <div class="mypage_box_all">
+    <div class="box_left">
+      <span class="box_out_nashi">
+        <%= link_to "基本情報", new_room_path, class: 'del_under' %>
+      </span>
+    </div>
+    
+    <div class="box_right">
+      <div class="boxR_all_bkcolor">
+        <div class="boxR_01">ルーム情報登録</div>
+        
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01">ルーム名</span>
+            <span class="box_kotei_moji">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :name, value: @room.name, class: 'profile_name_box', placeholder: "ルーム名を入力" %>
+          </div>
+        </div>
+        
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01 ">ルーム紹介</span>
+            <span class="box_kotei_moji">必須</span>
+          </div>
+          <div>
+            <%= f.text_area :profile, value: @room.profile, class: 'profile_intro_box', placeholder: "ルーム説明を入力" %>
+          </div>
+        </div>
+
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01 ">料金</span>
+            <span class="box_kotei_moji">必須</span>
+          </div>
+          <div>
+            <%= f.number_field :money, value: @room.money, class: 'profile_name_box', placeholder: "1日あたりの料金を入力" %>
+          </div>
+        </div>
+
+        <div class="boxR_03">
+          <div class="boxR_03_L">
+            <span class="boxR_03_L_01">住所</span>
+            <span class="box_kotei_moji">必須</span>
+          </div>          
+          <div>
+            <%= f.text_field :address, value: @room.address, class: 'profile_name_box', placeholder: "住所を入力" %>
+          </div>
+        </div>
+
+        <div class="boxR_03">
+           <div class="boxR_03_L">
+             <span class="boxR_03_L_01">ルーム画像</span>
+            <span class="box_kotei_moji">必須</span>
+          </div>
+          <div  class="boxR_03_R">
+            <%= f.file_field :image, value: @room.image, class: 'room_image_box' %>
+          </div>
+        </div>
+        
+        <div class="boxR_03">
+          <%= f.submit "登録", class: 'btn1' %>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<div class="reserve_show_all">
+  <table class="reserve_show_all_table">
+    <tr class="reserve_show_all_table_in reserve_show_all_table_in_line">
+      <th class="reserve_show_all_table_in_L">予約した部屋</span>
+      <th class="reserve_show_all_table_in_R"><%= @room.name %></th>
+    </tr>
+
+    <tr class="reserve_show_all_table_in reserve_show_all_table_in_line">
+      <th class="reserve_show_all_table_in_L">開始日</span>
+      <th class="reserve_show_all_table_in_R"><%= @reservation.start_day.strftime("%Y年%m月%d日") %></th>
+    </tr>
+
+    <tr class="reserve_show_all_table_in reserve_show_all_table_in_line">
+      <th class="reserve_show_all_table_in_L">終了日</span>
+      <th class="reserve_show_all_table_in_R"><%= @reservation.end_day.strftime("%Y年%m月%d日") %></th>
+    </tr>
+
+    <tr class="reserve_show_all_table_in">
+      <th class="reserve_show_all_table_in_L">価格</span>
+      <th class="reserve_show_all_table_in_R"><%= @reservation.price %>円</th>
+    </tr>
+  </table>
+</div>

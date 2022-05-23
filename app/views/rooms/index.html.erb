@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <%= render 'users/shared/login_header' %>
+<% else %>
+  <%= render 'users/shared/logout_header' %>
+<% end%>
+
+<% if flash[:success] %>
+  <div><%= flash[:success] %></div>
+<% end %>
+
+<div class="room_all_box">
+  <div class="room_box_top">登録済みルーム一覧</div>
+
+  <table class="room_box_table">
+    <tr>
+      <th class="room_box_title">ルーム画像</th>
+      <th class="room_box_title">ルーム名</th>
+      <th class="room_box_title">ルーム紹介</th>
+      <th class="room_box_title">料金</th>
+      <th class="room_box_title">作成日</th>
+    </tr>
+      
+    <% if @rooms.count > 0 %>
+      <% @rooms.each do |rm| %>
+        <tr>
+          <th class="room_box_table_body"><%= link_to image_tag(rm.image.thumb.to_s), room_path(rm.id) %></th>
+          <th class="room_box_table_body"><%= link_to rm.name, room_path(rm.id, :user_id => rm.user_id) %></th>
+          <th class="room_box_table_body"><%= rm.profile %></th>
+          <th class="room_box_table_body"><%= number_to_currency(rm.money, unit: "¥", format: "%u %n", strip_insignificant_zeros: true) %></th>
+          <th class="room_box_table_body"><%= l rm.created_at %></th>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <th colspan="5">登録されていません</th>
+      </tr>
+    <% end %>
+  </table>
+</div>

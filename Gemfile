@@ -43,7 +43,25 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
+
+#login
+gem "devise"
+
+#画像アップ用
+gem 'carrierwave', '~> 2.0'
+#画像のリサイズ
+gem 'mini_magick'
+
+# カレンダー
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
+
+# debug
+gem 'pry-rails'
+
+# エラーメッセージ日本語表記
+gem 'rails-i18n'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
